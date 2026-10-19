@@ -88,17 +88,19 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com", "https://www.highrevenueformat.com", "https://*.highrevenueformat.com"],
-        frameSrc: ["https://api.razorpay.com", "https://checkout.razorpay.com", "https://www.highrevenueformat.com", "https://*.highrevenueformat.com"],
-        connectSrc: ["'self'", "https://api.razorpay.com", "https://lumberjack.razorpay.com", "https://*.highrevenueformat.com"],
-        imgSrc: ["'self'", "data:", "https://*.razorpay.com", "https://*.highrevenueformat.com"],
+        defaultSrc: ["'self'", "https:", "data:", "'unsafe-inline'", "'unsafe-eval'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https:", "http:"],
+        frameSrc: ["'self'", "https:", "http:"],
+        connectSrc: ["'self'", "https:", "http:"],
+        imgSrc: ["'self'", "data:", "https:", "http:"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
         formAction: ["'self'"],
-        upgradeInsecureRequests: IS_PROD ? [] : null,
+        upgradeInsecureRequests: null,
       },
     },
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: false,
   })
 );
 
