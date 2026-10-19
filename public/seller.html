@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LuluKart Supplier Panel | Catalog & Product Upload</title>
+  <link rel="stylesheet" href="/seller.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ADMIN AUTH MODAL (SECURITY LOCK) -->
+  <div class="auth-overlay" id="authModal">
+    <div class="auth-card">
+      <div class="auth-icon">🔒</div>
+      <h2>Supplier Hub Access</h2>
+      <p class="auth-sub">Enter your secret Admin Password to manage catalog & products.</p>
+      <div class="auth-input-group">
+        <input type="password" id="adminPinInput" placeholder="Enter Admin Password..." autocomplete="current-password">
+        <button type="button" id="btnAuthLogin">Verify & Login</button>
+      </div>
+      <div class="auth-error" id="authError"></div>
+      <div class="auth-hint">Password is configured in your server Environment as <code>ADMIN_PASSWORD</code></div>
+    </div>
+  </div>
+
+  <div id="mainContentWrapper" class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-name">lulukart</span>
+        <span class="supplier-tag">SUPPLIER HUB</span>
+      </div>
+
+      <nav class="side-nav">
+        <div class="nav-section-title">MAIN MENU</div>
+        <a href="#" class="nav-item active"><span class="icon">📑</span> Catalog Uploads</a>
+        <a href="/" target="_blank" class="nav-item"><span class="icon">🌐</span> View Live Store</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="supplier-profile">
+          <div class="avatar">LK</div>
+          <div class="sup-details">
+            <div class="sup-name">LuluKart Store</div>
+            <div class="sup-status">● Admin Authenticated</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+      <!-- Top Header -->
+      <header class="topbar">
+        <div class="breadcrumb">
+          <span>Catalog</span> / <b>Add Single / Bulk Catalog</b>
+        </div>
+        <div class="topbar-actions">
+          <a href="/" target="_blank" class="view-store-btn">🌐 View Live Store</a>
+          <button type="button" id="btnLogoutAdmin" class="logout-btn">🔒 Lock Panel</button>
+          <div class="user-pill">
+            <span>Supplier ID: <b>#LK-9833</b></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <div class="page-content">
+        
+        <!-- Stepper / Overview Bar -->
+        <div class="catalog-tabs-bar">
+          <button class="tab-btn active" id="tabAddSingle">➕ Add Single Product</button>
+          <button class="tab-btn" id="tabViewInventory">📋 Current Inventory & Catalog (<span id="totalCount">0</span>)</button>
+        </div>
+
+        <!-- SECTION 1: Product Upload Form -->
+        <section id="sectionAddProduct" class="panel-card">
+          <div class="form-header">
+            <div>
+              <h2>Product Details & Listing</h2>
+              <p class="sub-text">Add your SKU, Pricing, Category, and Images according to LuluKart Catalog Guidelines</p>
+            </div>
+            <button type="button" class="btn-clear" id="btnResetForm">Reset Form</button>
+          </div>
+
+          <form id="productForm">
+            <!-- Category & Basic Info -->
+            <div class="form-grid-3">
+              <div class="input-group">
+                <label>Category <span class="req">*</span></label>
+                <select id="pCategory" required>
+                  <option value="Electronics">📱 Electronics & Accessories</option>
+                  <option value="Fashion">👗 Women Ethnic / Fashion</option>
+                  <option value="Home">🏠 Home & Kitchen</option>
+                  <option value="Grocery">🛒 Grocery & Staples</option>
+                  <option value="Footwear">👟 Footwear</option>
+                  <option value="Beauty">💄 Beauty & Personal Care</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label>SKU ID (Stock Keeping Unit) <span class="req">*</span></label>
+                <input type="text" id="pSku" placeholder="e.g. LK-TSHIRT-01" required>
+              </div>
+
+              <div class="input-group">
+                <label>Product Display Emoji / Icon <span class="req">*</span></label>
+                <input type="text" id="pEmoji" placeholder="e.g. 👗, 🎧, ⌚, 👟" maxlength="4" value="🛍️" required>
+              </div>
+            </div>
+
+            <!-- Title & Description -->
+            <div class="input-group">
+              <label>Product Title / Name (Max 120 characters) <span class="req">*</span></label>
+              <input type="text" id="pName" placeholder="e.g. Wireless Bluetooth Noise Cancelling Headphones" maxlength="120" required>
+            </div>
+
+            <!-- Pricing & Commission Calculator -->
+            <div class="pricing-card-box">
+              <div class="box-title">💰 Price & Profit Estimator (0% LuluKart Commission)</div>
+              <div class="pricing-grid">
+                <div class="input-group">
+                  <label>Customer Selling Price (₹) <span class="req">*</span></label>
+                  <input type="number" id="pPrice" placeholder="e.g. 499" min="1" required>
+                  <span class="field-hint">Customer will see this price</span>
+                </div>
+
+                <div class="input-group">
+                  <label>Original MRP (₹) <span class="req">*</span></label>
+                  <input type="number" id="pMrp" placeholder="e.g. 999" min="1" required>
+                  <span class="field-hint">For showing discount %</span>
+                </div>
+
+                <div class="input-group">
+                  <label>Stock / Inventory Qty <span class="req">*</span></label>
+                  <input type="number" id="pStock" placeholder="e.g. 50" min="1" value="50" required>
+                  <span class="field-hint">Available units</span>
+                </div>
+
+                <div class="calc-box">
+                  <div class="calc-line"><span>Customer Discount:</span> <b id="calcDiscount" class="text-green">0% OFF</b></div>
+                  <div class="calc-line"><span>Bank Settlement:</span> <b id="calcSettlement" class="text-pink">₹0</b></div>
+                  <div class="calc-sub">Free Delivery above ₹499 auto-applied</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Media Upload Section -->
+            <div class="media-upload-box">
+              <label class="form-section-label">Product Image / Front Photo</label>
+              <div class="upload-dropzone" id="dropZone">
+                <div class="dropzone-inner">
+                  <div class="upload-icon">📷</div>
+                  <div class="upload-title">Drop your product photo here or <span class="browse-link">Browse</span></div>
+                  <div class="upload-hint">Square image recommended (800x800 px). Max 2MB (JPG, PNG).</div>
+                  <input type="file" id="pImageInput" accept="image/*" hidden>
+                </div>
+                <div id="imagePreviewBox" class="img-preview" hidden>
+                  <img id="previewImg" src="" alt="Product Preview">
+                  <button type="button" id="removeImgBtn" class="btn-remove-img">✕</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Feedback & Submit -->
+            <div id="formStatus" class="form-status" hidden></div>
+
+            <div class="form-footer-actions">
+              <button type="submit" class="btn-primary-submit" id="btnSubmit">
+                🚀 Publish Product to LuluKart Store
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- SECTION 2: Inventory / Catalog Table -->
+        <section id="sectionInventory" class="panel-card" hidden>
+          <div class="inventory-top-row">
+            <div>
+              <h2>Your Live Catalogs</h2>
+              <p class="sub-text">Manage pricing, edit stock or remove products directly</p>
+            </div>
+            <div class="inventory-search">
+              <input type="text" id="invSearch" placeholder="Search by SKU or Title...">
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="seller-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th>Listing Price</th>
+                  <th>MRP</th>
+                  <th>Discount</th>
+                  <th>Stock</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="/seller.js"></script>
+</body>
+</html>

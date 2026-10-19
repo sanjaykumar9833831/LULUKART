@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LULUKART | Online Shopping for Electronics, Fashion, Home & More</title>
+  <link rel="icon" href="/logo.png">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Flipkart Style Header -->
+  <header class="fk-header">
+    <div class="top-nav">
+      <div class="brand-box">
+        <a class="brand" href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+          <img src="/logo.png" alt="LuluKart" style="height:38px;width:auto;border-radius:4px;object-fit:contain;">
+          <div style="display:flex;flex-direction:column;">
+            <span class="fk-logo-text" style="line-height:1.1;">Lulu<span class="fk-yellow">kart</span></span>
+            <span class="fk-explore">Explore <span class="fk-plus">Plus ✦</span></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="search-wrap">
+        <label class="fk-search">
+          <input id="q" type="search" placeholder="Search for products, brands and more" aria-label="Search products">
+          <button type="button" class="search-btn" aria-label="Search">🔍</button>
+        </label>
+      </div>
+
+      <div class="header-actions">
+        <a href="/seller" target="_blank" class="fk-seller-btn">Become a Seller</a>
+        <button class="fk-cart-btn" id="cbtn" aria-label="Open cart">
+          <span class="cart-icon">🛒</span>
+          <span class="cl">Cart</span>
+          <span class="badge" id="cc">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Bar -->
+    <nav class="fk-cats-bar" id="cats" aria-label="Categories"></nav>
+  </header>
+
+  <main class="fk-main">
+    <!-- Carousel / Banner -->
+    <section class="fk-hero" id="hero" aria-label="Offers"></section>
+
+    <!-- Flipkart Feature Strip -->
+    <div class="fk-strip">
+      <div class="strip-item">⚡ <span>Fast & Reliable Delivery</span></div>
+      <div class="strip-item">🏷️ <span>Extra 10% off with coupon <b>LULU10</b></span></div>
+      <div class="strip-item">🛡️ <span>100% Safe Payments by Razorpay</span></div>
+      <div class="strip-item">🔄 <span>7-Day Return Guarantee</span></div>
+    </div>
+
+    <!-- Adsterra 320x50 Banner Slot -->
+    <div style="display: flex; justify-content: center; margin: 12px auto; padding: 6px 0; background: #fff; border-radius: 4px; box-shadow: var(--fk-shadow); max-width: 1240px; overflow: hidden;">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'ad61b7520397b15b070db358ea4ac4f9',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="https://www.highrevenueformat.com/ad61b7520397b15b070db358ea4ac4f9/invoke.js"></script>
+    </div>
+
+    <!-- Deals of the Day (Rail) -->
+    <section class="fk-section" id="deals">
+      <div class="fk-sec-header">
+        <div>
+          <h2>Deals of the Day</h2>
+          <span class="sec-subtitle">Top discounts handpicked for you</span>
+        </div>
+      </div>
+      <div class="rail" id="rail"></div>
+    </section>
+
+    <!-- Main Products Grid -->
+    <section class="fk-section">
+      <div class="fk-sec-header">
+        <h2 id="st">All Products</h2>
+        <div class="sort-box">
+          <label for="so">Sort by:</label>
+          <select id="so" aria-label="Sort products">
+            <option value="r">Relevance</option>
+            <option value="d">Highest Discount</option>
+            <option value="l">Price: Low to High</option>
+            <option value="h">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- Professional Flipkart-Style Footer (With Razorpay Compliance Links) -->
+  <footer class="fk-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>ABOUT</h4>
+        <ul>
+          <li><a href="/about.html">About LuluKart</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+          <li><a href="/seller" target="_blank">LuluKart Wholesale / Seller</a></li>
+          <li><a href="#">Careers & Corporate Info</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>HELP</h4>
+        <ul>
+          <li><a href="/contact.html">Payments & Tracking</a></li>
+          <li><a href="/refund-policy.html">Shipping & Delivery</a></li>
+          <li><a href="/refund-policy.html">Cancellations & Returns</a></li>
+          <li><a href="/contact.html">FAQ & Help Center</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>CONSUMER POLICY</h4>
+        <ul>
+          <li><a href="/refund-policy.html">Cancellation & Returns</a></li>
+          <li><a href="/terms.html">Terms Of Use</a></li>
+          <li><a href="/privacy-policy.html">Security & Privacy</a></li>
+          <li><a href="/privacy-policy.html">Grievance Redressal</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact-col">
+        <h4>REGISTERED OFFICE</h4>
+        <p><strong>LULUKART</strong></p>
+        <p>Proprietor: Sanjay Kumar</p>
+        <p>Lucknow, Uttar Pradesh - 226002</p>
+        <p>India</p>
+        <p><strong>Phone:</strong> +91 8887753737</p>
+        <p><strong>Email:</strong> sanjaykumar9833831@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <span>⭐ 100% Original Products</span>
+        <span>🛡️ PCI-DSS Certified Checkout</span>
+        <span>🚚 Free Shipping above ₹499</span>
+      </div>
+      <p class="copyright">© 2026 LULUKART (lulukart.store). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Overlays, Drawer & Checkout Modal -->
+  <div class="ov" id="ov"></div>
+
+  <aside class="drawer" id="dr" aria-label="Cart">
+    <div class="dh">
+      <b>My Cart</b>
+      <button class="ib" id="dx" aria-label="Close cart">✕</button>
+    </div>
+    <div class="db" id="db"></div>
+    <div class="df" id="df"></div>
+  </aside>
+
+  <div class="modal" id="md" role="dialog" aria-modal="true"></div>
+
+  <!-- Scripts -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
